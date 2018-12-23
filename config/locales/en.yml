@@ -1,0 +1,36 @@
+
+en:
+  application_name: " Working time"
+
+  welcome: 
+    web_title: Working time
+
+  working_time_records:
+    index: Working time records
+
+  user:
+    registration: Registration
+    registration_submit: Submit
+    login: Login 
+    login_submit: Submit
+    logout: Logout
+    edit: Edit user
+    email: E-mail
+    password: Password
+    password_confirmation: Password confirmation
+    current_password: Current password
+    delete_account: Delete account
+    minimum_password_length: "%{minimum_password_length} characters minimum"
+    submit: Submit
+    default_categories:
+      expenses: "Another expense;Food and home chemistry;Household;Fuel;Transfers;Car service;Kids;Education;Electronics;Multimedia and books;Clothes and shoes;Gifts;Health;Charges;Trips;"
+      incomings: "Another incomes;Salary;Premium"
+    reset_password:
+      first: Hello
+      second: Someone has requested a link to change your password. You can do this through the link below.
+      third: Change my password
+      forth: If you didn't request this, please ignore this email.
+      fifth: Your password won't change until you access the link above and create a new one.
+    forgot_your_password: Did you forget your password?
+    send_reset_instruction: Send reset instruction
+    change_password: Change my password
