@@ -1,12 +1,18 @@
 
 en:
   application_name: " Working time"
+  save: Save
+  cancel: Cancel
 
   welcome: 
     web_title: Working time
 
   working_time_records:
     index: Working time records
+    date: Date
+    start_time: Start time
+    end_time: End time
+    add_record: Add record
 
   user:
     registration: Registration

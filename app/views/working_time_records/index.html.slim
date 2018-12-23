@@ -1,3 +1,24 @@
-h1 Listing working_time_records
 
+.panel.panel-default.operation-panel
+  .panel-heading
+    = I18n.t('working_time_records.index')
+    .btn-group.pull-right
+      button.btn.btn-xs.custom-btn-lighter data-toggle="modal" data-target="#add_record" type="button"
+        span.glyphicon.glyphicon-plus
+  .panel-body      
+    table.table.table-hover 
+      thead
+        tr
+          th width="25%" = I18n.t('working_time_records.date')
+          th width="25%" = I18n.t('working_time_records.start_time')
+          th width="25%" = I18n.t('working_time_records.end_time')
+          th width="25%"
+      tbody
+       - @working_time_records.each do |r|
+        tr
+          td = r.date
+          td = r.start_time
+          td = r.end_time
+          td
 
+= render "add_record"
