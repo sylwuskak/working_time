@@ -1,0 +1,22 @@
+= form_for working_time_record, url: working_time_record_path(working_time_record), turboboost: true, method: :patch  do |f|
+  .modal.fade id="working_time_record_edit_#{working_time_record.id}" tabindex="-1" role="dialog"
+    .modal-dialog role="document"
+      .modal-content
+        .modal-header 
+          = I18n.t('working_time_records.edit_record')
+        .modal-body
+          .row
+            .col-md-6
+                .form-group
+                  = f.label :start_time, t('working_time_records.start_time')
+                  = f.text_field :start_time, class: 'form-control'
+            .col-md-6
+                .form-group
+                  = f.label :end_time, I18n.t('working_time_records.end_time')
+                  = f.text_field :end_time, class: 'form-control'
+          
+        .modal-footer
+          button.btn.custom-btn type="submit" 
+            = I18n.t('save')
+          button.btn.btn-default data-dismiss="modal" 
+            = I18n.t('cancel')

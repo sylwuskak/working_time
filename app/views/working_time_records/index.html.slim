@@ -3,22 +3,39 @@
   .panel-heading
     = I18n.t('working_time_records.index')
     .btn-group.pull-right
-      button.btn.btn-xs.custom-btn-lighter data-toggle="modal" data-target="#add_record" type="button"
+      button.btn.btn-xs data-toggle="modal" data-target="#add_record" type="button"
         span.glyphicon.glyphicon-plus
-  .panel-body      
+  .panel-body   
+    - if $start_time.nil?
+      =link_to start_working_time_records_path, class: 'btn btn-primary', method: :post
+        | Start
+    - else
+      =link_to end_working_time_records_path, class: 'btn btn-primary', method: :post
+        | End
+    - diff = TimeDifference.between(Time.now, Time.now + @today_time).in_general
+    = I18n.t('working_time_records.today_work') + diff[:hours].to_s + ':' + diff[:minutes].to_s.rjust(2, '0') + ':' + diff[:seconds].to_s.rjust(2, '0')
     table.table.table-hover 
       thead
         tr
-          th width="25%" = I18n.t('working_time_records.date')
-          th width="25%" = I18n.t('working_time_records.start_time')
-          th width="25%" = I18n.t('working_time_records.end_time')
-          th width="25%"
+          th width="20%" = I18n.t('working_time_records.date')
+          th width="20%" = I18n.t('working_time_records.start_time')
+          th width="20%" = I18n.t('working_time_records.end_time')
+          th width="20%" = I18n.t('working_time_records.time_difference')
+          th width="20%"
       tbody
        - @working_time_records.each do |r|
         tr
-          td = r.date
-          td = r.start_time
-          td = r.end_time
+          td = r.start_time.strftime("%Y-%m-%d")
+          td = r.start_time.strftime("%H:%M")
+          td = r.end_time.strftime("%H:%M")
+          - d = TimeDifference.between(r.start_time, r.end_time).in_general
+          td = d[:hours].to_s + ':' + d[:minutes].to_s.rjust(2, '0') + ':' + d[:seconds].to_s.rjust(2, '0')
           td
+            .btn-group.pull-right
+              button.btn.btn-xs.btn-primary data-toggle="modal" data-target="#working_time_record_edit_#{r.id}"
+                span.glyphicon.glyphicon-pencil
+              =link_to working_time_record_path(r), class: 'btn btn-xs btn-primary', method: :delete, data: {confirm: I18n.t('working_time_records.delete_confirmation_message')}
+                span.glyphicon.glyphicon-remove
 
 = render "add_record"
+= render "edit_forms"

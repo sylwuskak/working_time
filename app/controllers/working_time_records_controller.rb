@@ -4,11 +4,12 @@ class WorkingTimeRecordsController < ApplicationController
 
   def index
     @working_time_records = current_user.working_time_records
+    @today_time = @working_time_records.where(date: Date.today).sum{|a| a.end_time - a.start_time}
   end
 
   def create
     begin
-      o = WorkingTimeRecord.new(record_params)
+      o = WorkingTimeRecord.new(adding_record_params)
       o.user = current_user
       o.save!
     rescue => e
@@ -18,10 +19,46 @@ class WorkingTimeRecordsController < ApplicationController
     redirect_to working_time_records_path
   end
 
+  def update 
+    begin
+      @working_time_records = WorkingTimeRecord.find(params[:id])
+      @working_time_records.update!(record_params)
+    rescue => e
+      flash[:danger] = I18n.t('working_time_records.save_failure')
+    end
+    redirect_to working_time_records_path  
+  end
+
+  def destroy
+    WorkingTimeRecord.destroy(params[:id])
+    redirect_to working_time_records_path
+  end
+
+  def start 
+    $start_time = Time.now
+    redirect_to working_time_records_path
+  end
+
+  def end  
+    $end_time = Time.now
+    w = WorkingTimeRecord.new(date: Date.today, start_time: $start_time, end_time: $end_time, user: current_user)
+    $start_time = nil
+    $end_time = nil
+    w.save!
+    redirect_to working_time_records_path
+  end
+
   private
 
   def record_params
-    params.require(:working_time_record).permit(:date, :start_time, :end_time)  
+    params.require(:working_time_record).permit(:start_time, :end_time)  
+  end
+
+  def adding_record_params
+    a = params.require(:working_time_record).permit(:date, :start_time, :end_time)
+    a[:start_time] = a[:date] + ' ' + a[:start_time]
+    a[:end_time] = a[:date] + ' ' + a[:end_time]
+    a
   end
 
 end
