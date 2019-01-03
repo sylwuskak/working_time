@@ -5,8 +5,9 @@
     .btn-group.pull-right
       button.btn.btn-xs data-toggle="modal" data-target="#add_record" type="button"
         span.glyphicon.glyphicon-plus
-  .panel-body   
-    - if $start_time.nil?
+  .panel-body 
+    - r =  @working_time_records.first
+    - if r.start_time != r.end_time
       =button_to start_working_time_records_path, class: 'btn btn-success', method: :post
         | Start
     - else

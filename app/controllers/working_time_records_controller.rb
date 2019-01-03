@@ -36,15 +36,16 @@ class WorkingTimeRecordsController < ApplicationController
   end
 
   def start 
-    $start_time = Time.now
+    start_time = Time.now
+    w = WorkingTimeRecord.new(date: Date.today, start_time: start_time, end_time: start_time, user: current_user, category: current_user.categories.where(category_name: "No category").first)
+    w.save!
     redirect_to working_time_records_path
   end
 
   def end  
-    $end_time = Time.now
-    w = WorkingTimeRecord.new(date: Date.today, start_time: $start_time, end_time: $end_time, user: current_user, category: current_user.categories.where(category_name: "No category").first)
-    $start_time = nil
-    $end_time = nil
+    end_time = Time.now
+    w = current_user.working_time_records.last
+    w.end_time = end_time
     w.save!
     redirect_to working_time_records_path
   end
