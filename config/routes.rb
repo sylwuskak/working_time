@@ -11,4 +11,7 @@ Rails.application.routes.draw do
       post 'end'
     end
   end
+
+  resources :categories, only: [:create, :index, :destroy, :update] do
+  end
 end

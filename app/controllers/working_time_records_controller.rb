@@ -3,8 +3,9 @@ class WorkingTimeRecordsController < ApplicationController
 
 
   def index
-    @working_time_records = current_user.working_time_records.order(start_time: :desc).paginate(:page => params[:page], :per_page => 10)
-    @today_time = @working_time_records.where(date: Date.today).sum{|a| a.end_time - a.start_time}
+    @working_time_records_all = current_user.working_time_records
+    @working_time_records = @working_time_records_all.order(start_time: :desc).paginate(:page => params[:page], :per_page => 10)
+    @today_time = @working_time_records_all.where(date: Date.today).sum{|a| a.end_time - a.start_time}
   end
 
   def create
@@ -51,11 +52,11 @@ class WorkingTimeRecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:working_time_record).permit(:start_time, :end_time)  
+    params.require(:working_time_record).permit(:start_time, :end_time, :category_id)  
   end
 
   def adding_record_params
-    a = params.require(:working_time_record).permit(:date, :start_time, :end_time)
+    a = params.require(:working_time_record).permit(:date, :start_time, :end_time, :category_id)
     a[:start_time] = a[:date] + ' ' + a[:start_time]
     a[:end_time] = a[:date] + ' ' + a[:end_time]
     a

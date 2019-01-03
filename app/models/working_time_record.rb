@@ -1,9 +1,5 @@
 class WorkingTimeRecord < ApplicationRecord
     belongs_to :user
-
-    def working_time
-        
-    end
-
+    belongs_to :category
 
 end

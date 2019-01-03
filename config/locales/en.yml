@@ -10,6 +10,7 @@ en:
   working_time_records:
     index: Working time records
     date: Date
+    category: Category
     start_time: Start time
     end_time: End time
     time_difference: Time difference
@@ -23,6 +24,11 @@ en:
   simple_calendar:
     previous: "<<"
     next: ">>"
+  
+  categories:
+    index: Categories
+    category_name: Category name
+    add_category: Add category
 
   user:
     registration: Registration

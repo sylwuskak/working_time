@@ -6,6 +6,11 @@
           = I18n.t('working_time_records.edit_record')
         .modal-body
           .row
+            .col-md-12
+              .form-group
+                = f.label :category, I18n.t('working_time_records.category')
+                = f.select :category_id, current_user.categories.map{|c| [c.category_name, c.id]}.sort_by{|c| c[0]}, {}, {class: 'form-control'}
+          .row
             .col-md-6
                 .form-group
                   = f.label :start_time, t('working_time_records.start_time')

@@ -17,15 +17,17 @@
     table.table.table-hover 
       thead
         tr
-          th width="20%" = I18n.t('working_time_records.date')
-          th width="20%" = I18n.t('working_time_records.start_time')
-          th width="20%" = I18n.t('working_time_records.end_time')
-          th width="20%" = I18n.t('working_time_records.time_difference')
-          th width="20%"
+          th width="15%" = I18n.t('working_time_records.date')
+          th width="30%" = I18n.t('working_time_records.category')
+          th width="15%" = I18n.t('working_time_records.start_time')
+          th width="15%" = I18n.t('working_time_records.end_time')
+          th width="15%" = I18n.t('working_time_records.time_difference')
+          th width="10%"
       tbody
        - @working_time_records.each do |r|
         tr
           td = r.start_time.strftime("%Y-%m-%d")
+          td = r.category.category_name
           td = r.start_time.strftime("%H:%M")
           td = r.end_time.strftime("%H:%M")
           - d = TimeDifference.between(r.start_time, r.end_time).in_general
