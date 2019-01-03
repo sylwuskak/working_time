@@ -1,7 +1,7 @@
 = month_calendar events: @records do |date, records| 
   = date.day
   - records.group_by{|o| o.date}.each do |date, records| 
-    div
+    .show_time
       - time = records.sum{|a| a.end_time - a.start_time}
       - diff = TimeDifference.between(Time.now, Time.now + time).in_general
       = diff[:hours].to_s + ':' + diff[:minutes].to_s.rjust(2, '0') + ':' + diff[:seconds].to_s.rjust(2, '0')

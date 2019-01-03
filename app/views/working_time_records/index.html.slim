@@ -7,10 +7,10 @@
         span.glyphicon.glyphicon-plus
   .panel-body   
     - if $start_time.nil?
-      =link_to start_working_time_records_path, class: 'btn btn-primary', method: :post
+      =button_to start_working_time_records_path, class: 'btn btn-success', method: :post
         | Start
     - else
-      =link_to end_working_time_records_path, class: 'btn btn-primary', method: :post
+      =button_to end_working_time_records_path, class: 'btn btn-danger', method: :post
         | End
     - diff = TimeDifference.between(Time.now, Time.now + @today_time).in_general
     = I18n.t('working_time_records.today_work') + diff[:hours].to_s + ':' + diff[:minutes].to_s.rjust(2, '0') + ':' + diff[:seconds].to_s.rjust(2, '0')

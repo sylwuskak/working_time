@@ -20,6 +20,10 @@ en:
   calendar: 
     index: Calendar
 
+  simple_calendar:
+    previous: "<<"
+    next: ">>"
+
   user:
     registration: Registration
     registration_submit: Submit
