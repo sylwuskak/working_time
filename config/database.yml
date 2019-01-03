@@ -6,3 +6,14 @@ development:
   pool: 5
   username: postgres
   password: Password1
+
+
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: dc99mqstq6lgtr
+#   pool: 8
+#   username: hoflrhsxbqiljv
+#   password: ed0152106fb855c8ac1d8ca6150159d38ca91d981d5201ef531c0e2dd37158cd
+#   host: ec2-50-19-255-235.compute-1.amazonaws.com
+#   port: 5432
