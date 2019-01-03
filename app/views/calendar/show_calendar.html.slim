@@ -1,3 +1,18 @@
+form action="calendar" method="get" enctype="multipart/form-data"
+  .row.horizontal-form
+    .col-md-4
+      .form-group
+        = label_tag 'category_id'
+          = I18n.t('working_time_records.category')
+        = select_tag :category_id, options_from_collection_for_select(@categories, "id", "category_name"), class: 'form-control',  value: params['category_id'].to_s
+
+    .col-md-2
+      .form-group
+        button.btn.custom-btn.btn-block type="submit"
+          = I18n.t('submit')
+
+
+
 = month_calendar events: @records do |date, records| 
   = date.day
   - records.group_by{|o| o.date}.each do |date, records| 

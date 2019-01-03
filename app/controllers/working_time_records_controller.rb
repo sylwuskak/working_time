@@ -42,7 +42,7 @@ class WorkingTimeRecordsController < ApplicationController
 
   def end  
     $end_time = Time.now
-    w = WorkingTimeRecord.new(date: Date.today, start_time: $start_time, end_time: $end_time, user: current_user)
+    w = WorkingTimeRecord.new(date: Date.today, start_time: $start_time, end_time: $end_time, user: current_user, category: current_user.categories.where(category_name: "No category").first)
     $start_time = nil
     $end_time = nil
     w.save!

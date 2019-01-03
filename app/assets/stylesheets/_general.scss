@@ -10,3 +10,9 @@
     color: #0000ff;
     font-weight: bold;
 }
+
+.horizontal-form {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
