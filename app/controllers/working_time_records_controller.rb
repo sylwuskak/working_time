@@ -3,7 +3,7 @@ class WorkingTimeRecordsController < ApplicationController
 
 
   def index
-    @working_time_records = current_user.working_time_records
+    @working_time_records = current_user.working_time_records.order(start_time: :desc).paginate(:page => params[:page], :per_page => 10)
     @today_time = @working_time_records.where(date: Date.today).sum{|a| a.end_time - a.start_time}
   end
 
