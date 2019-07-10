@@ -8,6 +8,19 @@ class WorkingTimeRecordsController < ApplicationController
     @today_time = @working_time_records_all.where(date: Date.today).sum{|a| a.end_time - a.start_time}
     @week_time = @working_time_records_all.select{|r| r.date <= Date.today && r.date >= Date.today.beginning_of_week}.sum{|a| a.end_time - a.start_time}
     @month_time = @working_time_records_all.select{|r| r.date <= Date.today && r.date >= Date.today.beginning_of_month}.sum{|a| a.end_time - a.start_time}
+
+    @week_hours = 0
+    @month_hours = 0
+
+    while @week_time > 86400 do 
+      @week_hours += 24
+      @week_time -= 86400
+    end
+
+    while @month_time > 86400 do
+      @month_hours += 24
+      @month_time -= 86400
+    end
   end
 
   def create
