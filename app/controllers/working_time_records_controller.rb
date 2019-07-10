@@ -6,6 +6,8 @@ class WorkingTimeRecordsController < ApplicationController
     @working_time_records_all = current_user.working_time_records
     @working_time_records = @working_time_records_all.order(start_time: :desc).paginate(:page => params[:page], :per_page => 10)
     @today_time = @working_time_records_all.where(date: Date.today).sum{|a| a.end_time - a.start_time}
+    @week_time = @working_time_records_all.select{|r| r.date <= Date.today && r.date >= Date.today.beginning_of_week}.sum{|a| a.end_time - a.start_time}
+    @month_time = @working_time_records_all.select{|r| r.date <= Date.today && r.date >= Date.today.beginning_of_month}.sum{|a| a.end_time - a.start_time}
   end
 
   def create

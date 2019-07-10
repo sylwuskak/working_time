@@ -18,6 +18,8 @@ en:
     add_record: Add record
     edit_record: Edit record
     today_work: "Today you've already worked: "
+    week_work: "This week you've already worked: "
+    month_work: "This month you've already worked: "
 
   calendar: 
     index: Calendar
