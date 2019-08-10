@@ -16,13 +16,17 @@
     - diff = TimeDifference.between(Time.now, Time.now + @today_time).in_general
     p = I18n.t('working_time_records.today_work') + diff[:hours].to_s + ':' + diff[:minutes].to_s.rjust(2, '0') + ':' + diff[:seconds].to_s.rjust(2, '0')
 
-    
-
     - week_diff = TimeDifference.between(Time.now, Time.now + @week_time).in_general
-    p = I18n.t('working_time_records.week_work') + (week_diff[:hours] + @week_hours).to_s + ':' + week_diff[:minutes].to_s.rjust(2, '0') + ':' + week_diff[:seconds].to_s.rjust(2, '0')
+    p = I18n.t('working_time_records.week_work') + (week_diff[:hours] +  week_diff[:days] * 24).to_s + ':' + week_diff[:minutes].to_s.rjust(2, '0') + ':' + week_diff[:seconds].to_s.rjust(2, '0')
 
+    - hours = (Time.now.wday > 5 ? 5 : Time.now.wday)  * 6
+    - week_to_do = TimeDifference.between(Time.now +  @week_time, Time.now + hours.hours).in_general
+
+    p = I18n.t('working_time_records.today_to_work') + (week_to_do[:hours] + week_to_do[:days] * 24).to_s + ':' + week_to_do[:minutes].to_s.rjust(2, '0') + ':' + week_to_do[:seconds].to_s.rjust(2, '0')
+    
     - month_diff = TimeDifference.between(Time.now, Time.now + @month_time).in_general
-    p = I18n.t('working_time_records.month_work') + (month_diff[:hours] + @month_hours).to_s + ':' + month_diff[:minutes].to_s.rjust(2, '0') + ':' + month_diff[:seconds].to_s.rjust(2, '0')
+    p = I18n.t('working_time_records.month_work') + (month_diff[:hours] +  month_diff[:days] * 24).to_s + ':' + month_diff[:minutes].to_s.rjust(2, '0') + ':' + month_diff[:seconds].to_s.rjust(2, '0')
+
 
 
     table.table.table-hover 

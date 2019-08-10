@@ -20,6 +20,7 @@ en:
     today_work: "Today you've already worked: "
     week_work: "This week you've already worked: "
     month_work: "This month you've already worked: "
+    today_to_work: "You have to work today: "
 
   calendar: 
     index: Calendar
