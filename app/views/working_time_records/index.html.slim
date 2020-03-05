@@ -22,7 +22,7 @@
     - minutes = (Time.now.wday > 5 ? 5 : Time.now.wday) * 320
     - week_to_do = TimeDifference.between(Time.now +  @week_time, Time.now + minutes.minutes).in_general
 
-    - sign = "+"
+    - sign = ""
     - if (Time.now + minutes.minutes) < (Time.now + @week_time)
       - sign = "-"
 
