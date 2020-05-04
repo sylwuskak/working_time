@@ -19,7 +19,7 @@
     - week_diff = TimeDifference.between(Time.now, Time.now + @week_time).in_general
     p = I18n.t('working_time_records.week_work') + (week_diff[:hours] +  week_diff[:days] * 24).to_s + ':' + week_diff[:minutes].to_s.rjust(2, '0') + ':' + week_diff[:seconds].to_s.rjust(2, '0')
 
-    - minutes = (Time.now.wday > 5 ? 5 : Time.now.wday) * 240
+    - minutes = (Time.now.wday > 5 ? 5 : Time.now.wday) * 180
     - week_to_do = TimeDifference.between(Time.now +  @week_time, Time.now + minutes.minutes).in_general
 
     - sign = ""
