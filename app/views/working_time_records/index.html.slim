@@ -19,7 +19,7 @@
     - week_diff = TimeDifference.between(Time.now, Time.now + @week_time).in_general
     p = I18n.t('working_time_records.week_work') + (week_diff[:hours] +  week_diff[:days] * 24).to_s + ':' + week_diff[:minutes].to_s.rjust(2, '0') + ':' + week_diff[:seconds].to_s.rjust(2, '0')
 
-    - minutes = (Time.now.wday > 5 ? 5 : Time.now.wday) * 210
+    - minutes = (Time.now.wday > 5 ? 5 : Time.now.wday) * current_user.hours_number * 60
     - week_to_do = TimeDifference.between(Time.now +  @week_time, Time.now + minutes.minutes).in_general
 
     - sign = ""
@@ -31,7 +31,7 @@
     - month_diff = TimeDifference.between(Time.now, Time.now + @month_time).in_general
     p = I18n.t('working_time_records.month_work') + (month_diff[:hours] +  month_diff[:days] * 24).to_s + ':' + month_diff[:minutes].to_s.rjust(2, '0') + ':' + month_diff[:seconds].to_s.rjust(2, '0')
 
-
+    p = I18n.t('working_time_records.month_salary') + ((month_diff[:hours] +  month_diff[:days] * 24) * current_user.salary / current_user.hours_by_month ).round().to_s
 
     table.table.table-hover 
       thead

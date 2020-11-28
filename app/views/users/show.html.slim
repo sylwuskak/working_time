@@ -1,0 +1,26 @@
+h2 = I18n.t('user.change_data')
+= form_for(@user, url: user_path(@user), html: { method: :patch }) do |f|
+  .panel.panel-default
+    .panel-body
+      .row
+        .col-md-4
+          .form-group
+            = f.label :salary, I18n.t('user.salary')
+            = f.text_field :salary, autocomplete: "off", class: 'form-control'
+        .col-md-4
+          .form-group
+            = f.label :hours_number, I18n.t('user.hours_number')
+            = f.text_field :hours_number, autocomplete: "off", class: 'form-control'
+        .col-md-4
+          .form-group
+            = f.label :hours_by_month, I18n.t('user.hours_by_month')
+            = f.text_field :hours_by_month, autocomplete: "off", class: 'form-control'
+
+
+    .panel-footer
+      .row
+        .col-md-12
+          .pull-right
+            button.btn.custom-btn type="submit" 
+              = I18n.t('user.save')
+    

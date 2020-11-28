@@ -21,6 +21,7 @@ en:
     week_work: "This week you've already worked: "
     month_work: "This month you've already worked: "
     today_to_work: "You have to work today: "
+    month_salary: "You have earned already: "
 
   calendar: 
     index: Calendar
@@ -60,3 +61,9 @@ en:
     forgot_your_password: Did you forget your password?
     send_reset_instruction: Send reset instruction
     change_password: Change my password
+    salary: Salary
+    hours_number: Hours by day
+    hours_by_month: Hours by month
+    save: Save
+    change_data: Change data
+    show: User change data
