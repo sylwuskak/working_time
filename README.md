@@ -1,6 +1,6 @@
 # README
 
-Budget Application
+Working time Application
 
 # Installation process
 
