@@ -28,6 +28,15 @@
 
     p = I18n.t('working_time_records.today_to_work') + sign + (week_to_do[:hours] + week_to_do[:days] * 24).to_s + ':' + week_to_do[:minutes].to_s.rjust(2, '0') + ':' + week_to_do[:seconds].to_s.rjust(2, '0')
     
+    - day_to_do = TimeDifference.between(Time.now +  @today_time, Time.now + current_user.hours_number.hours).in_general
+    
+    - sign = ""
+    - if (Time.now +  @today_time) > (Time.now + current_user.hours_number.hours)
+      - sign = "-"
+    
+    p = I18n.t('working_time_records.today_to_work_daily') + sign + (day_to_do[:hours] + day_to_do[:days] * 24).to_s + ':' + day_to_do[:minutes].to_s.rjust(2, '0') + ':' + day_to_do[:seconds].to_s.rjust(2, '0')
+
+   
     - month_diff = TimeDifference.between(Time.now, Time.now + @month_time).in_general
     p = I18n.t('working_time_records.month_work') + (month_diff[:hours] +  month_diff[:days] * 24).to_s + ':' + month_diff[:minutes].to_s.rjust(2, '0') + ':' + month_diff[:seconds].to_s.rjust(2, '0')
 
