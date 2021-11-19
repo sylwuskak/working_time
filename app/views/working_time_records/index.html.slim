@@ -8,7 +8,7 @@
   .panel-body 
     .row 
       .col-md-12
-      - r =  @working_time_records.first
+        - r =  @working_time_records.first
         - if !r || (r && r.start_time != r.end_time)
           =button_to start_working_time_records_path, class: 'btn btn-success', method: :post
             | Start
