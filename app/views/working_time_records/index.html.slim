@@ -6,15 +6,17 @@
       button.btn.btn-xs data-toggle="modal" data-target="#add_record" type="button"
         span.glyphicon.glyphicon-plus
   .panel-body 
-    .row
-      .col-md-6
-        - r =  @working_time_records.first
+    .row 
+      .col-md-12
+      - r =  @working_time_records.first
         - if !r || (r && r.start_time != r.end_time)
           =button_to start_working_time_records_path, class: 'btn btn-success', method: :post
             | Start
         - else
           =button_to end_working_time_records_path, class: 'btn btn-danger', method: :post
             | End
+    .row
+      .col-md-6
         - diff = TimeDifference.between(Time.now, Time.now + @today_time).in_general
         p = I18n.t('working_time_records.today_work') + diff[:hours].to_s + ':' + diff[:minutes].to_s.rjust(2, '0') + ':' + diff[:seconds].to_s.rjust(2, '0')
 
