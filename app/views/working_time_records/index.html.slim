@@ -44,7 +44,7 @@
         p = I18n.t('working_time_records.today_to_work') + sign + (week_to_do[:hours] + week_to_do[:days] * 24).to_s + ':' + week_to_do[:minutes].to_s.rjust(2, '0') + ':' + week_to_do[:seconds].to_s.rjust(2, '0')
     
         
-        p = I18n.t('working_time_records.month_salary') + ((month_diff[:hours] +  month_diff[:days] * 24) * current_user.salary / current_user.hours_by_month ).round().to_s
+        p = I18n.t('working_time_records.month_salary') + ((month_diff[:weeks] * 7 * 24 + month_diff[:hours] +  month_diff[:days] * 24) * current_user.salary / current_user.hours_by_month ).round().to_s
 
     table.table.table-hover 
       thead
