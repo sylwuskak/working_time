@@ -4,7 +4,7 @@ lock "~> 3.17.1"
 set :application, 'workingtimecounter'
 set :repo_url, 'git@github.com:sylwuskak/working_time.git' # Edit this to match your repository
 set :branch, :master
-set :deploy_to, '/home/deploy/urlshortner'
+set :deploy_to, '/home/deploy/workingtimecounter'
 set :pty, true
 set :linked_files, %w{config/database.yml config/application.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
